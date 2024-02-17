@@ -1,9 +1,6 @@
 package com.customer_department.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "CONTACT_PERSON")
 public class ContactPerson {
@@ -19,17 +17,17 @@ public class ContactPerson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "CONTACT_PERSON_F_NAME", nullable = false)
-    private String contactPersonFirstName;
+    @Column(name = "FIRST_NAME", nullable = false)
+    private String firstName;
 
-    @Column(name = "CONTACT_PERSON_L_NAME", nullable = false)
-    private String contactPersonLastName;
+    @Column(name = "LAST_NAME", nullable = false)
+    private String lastName;
 
-    @Column(name = "CONTACT_PERSON_EMAIL", nullable = false, unique = true)
-    private String contactPersonEmail;
+    @Column(name = "EMAIL", nullable = false, unique = true)
+    private String email;
 
-    @Column(name = "CONTACT_PERSON_PHONE", nullable = false)
-    private String contactPersonPhoneNumber;
+    @Column(name = "PHONE", nullable = false)
+    private String phoneNumber;
 
     @ManyToOne
     @JoinColumn(name = "FK_CUSTOMER")

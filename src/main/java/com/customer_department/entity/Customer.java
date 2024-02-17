@@ -2,10 +2,7 @@ package com.customer_department.entity;
 
 import com.customer_department.enums.PaymentMethod;
 import com.customer_department.enums.TaxValue;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "CUSTOMERS")
 public class Customer {
@@ -26,7 +24,7 @@ public class Customer {
     private String customerName;
 
     @Column(name = "TAX_NUMBER", nullable = false, unique = true)
-    private String TaxNumber;
+    private String taxNumber;
 
     @Column(name = "COUNTRY", nullable = false)
     private String country;
@@ -55,14 +53,14 @@ public class Customer {
     @Column(name = "BLOCKED_PAYMENT")
     private boolean paymentIsBlocked;
 
-    @Column(name = "CONTACT_PERSON", nullable = false)
-    @OneToMany(mappedBy = "customer")
-    private List<ContactPerson> contactPersons;
-
     @Column(name = "PAYMENT_METHOD")
     private PaymentMethod paymentMethod;
 
     @Column(name = "TAX_VALUE")
     private TaxValue taxValue;
+
+    @Column(name = "CONTACT_PERSON", nullable = false)
+    @OneToMany(mappedBy = "customer")
+    private List<ContactPerson> contactPersons;
 
 }
