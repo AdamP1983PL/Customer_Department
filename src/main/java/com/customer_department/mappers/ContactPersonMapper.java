@@ -24,7 +24,7 @@ public class ContactPersonMapper {
                 .firstName(contactPerson.getFirstName())
                 .lastName(contactPerson.getLastName())
                 .email(contactPerson.getEmail())
-                .phoneNumber(contactPerson.getEmail())
+                .phoneNumber(contactPerson.getPhoneNumber())
                 .customer(contactPerson.getCustomer())
                 .build();
     }

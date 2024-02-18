@@ -31,3 +31,7 @@ public class CustomerDto {
     private List<ContactPerson> contactPersons;
 
 }
+
+
+// todo add validation
+// todo add swagger documentation

@@ -18,3 +18,6 @@ public class ContactPersonDto {
     private Customer customer;
 
 }
+
+// todo add validation
+// todo add swagger documentation
