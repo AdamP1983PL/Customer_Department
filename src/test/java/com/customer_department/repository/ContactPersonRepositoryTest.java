@@ -1,7 +1,7 @@
 package com.customer_department.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ContactPersonRepositoryTest {
+
+    //todo write test for Optional<ContactPerson> findContactPersonByEmail(String email);
 
 }

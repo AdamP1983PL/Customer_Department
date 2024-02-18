@@ -46,10 +46,10 @@ public class ContactPersonService {
     }
 
     public ContactPersonDto createContactPerson(ContactPersonDto contactPersonDto) {
-        Optional<ContactPerson> optionalContactPerson = contactPersonRepository
+        Optional<ContactPerson> contactPerson = contactPersonRepository
                 .findContactPersonByEmail(contactPersonDto.getEmail());
 
-        if (optionalContactPerson.isPresent()) {
+        if (contactPerson.isPresent()) {
             throw new EmailAlreadyExistsException("Email", contactPersonDto.getEmail());
         }
 
@@ -76,11 +76,11 @@ public class ContactPersonService {
     }
 
     public void deleteContactPersonById(Long id) {
-        ContactPerson contactPerson = contactPersonRepository.findById(id)
+        contactPersonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Contact Person", "id", id));
 
         contactPersonRepository.deleteById(id);
-        log.info("====>>>> Contact Person with id: " + id + " deleted successfully");
+        log.info("====>>>> Contact Person with id: " + id + " deleted successfully.");
     }
 
 }
