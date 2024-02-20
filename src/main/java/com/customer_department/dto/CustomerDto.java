@@ -28,7 +28,7 @@ public class CustomerDto {
     private boolean paymentIsBlocked;
     private PaymentMethod paymentMethod;
     private TaxValue taxValue;
-    private List<ContactPerson> contactPersons;
+    private List<Long> contactPersonsId;
 
 }
 

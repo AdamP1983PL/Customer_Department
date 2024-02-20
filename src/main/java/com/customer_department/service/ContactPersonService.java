@@ -66,7 +66,6 @@ public class ContactPersonService {
                     person.setLastName(contactPersonDto.getLastName());
                     person.setEmail(contactPersonDto.getEmail());
                     person.setPhoneNumber(contactPersonDto.getPhoneNumber());
-                    person.setCustomer(contactPersonDto.getCustomer());
                     return contactPersonRepository.save(person);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Contact Person", "id", id));

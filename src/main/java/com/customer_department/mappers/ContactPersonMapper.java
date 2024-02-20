@@ -2,9 +2,11 @@ package com.customer_department.mappers;
 
 import com.customer_department.dto.ContactPersonDto;
 import com.customer_department.entity.ContactPerson;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class ContactPersonMapper {
 
     public ContactPerson mapToContactPerson(ContactPersonDto contactPersonDto) {
@@ -14,7 +16,6 @@ public class ContactPersonMapper {
                 .lastName(contactPersonDto.getLastName())
                 .email(contactPersonDto.getEmail())
                 .phoneNumber(contactPersonDto.getPhoneNumber())
-                .customer(contactPersonDto.getCustomer())
                 .build();
     }
 
@@ -25,9 +26,7 @@ public class ContactPersonMapper {
                 .lastName(contactPerson.getLastName())
                 .email(contactPerson.getEmail())
                 .phoneNumber(contactPerson.getPhoneNumber())
-                .customer(contactPerson.getCustomer())
                 .build();
     }
-
 
 }

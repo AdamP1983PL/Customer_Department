@@ -55,7 +55,7 @@ class CustomerMapperTest {
                 .paymentIsBlocked(false)
                 .paymentMethod(PaymentMethod.PAYMENT_BY_CARD)
                 .taxValue(TaxValue.TWENTY_THREE)
-                .contactPersons(List.of())
+                .contactPersonsId(List.of())
                 .build();
     }
 
@@ -113,7 +113,7 @@ class CustomerMapperTest {
                 () -> assertFalse(mappedCustomerDto.isPaymentIsBlocked()),
                 () -> assertEquals(PaymentMethod.PAYMENT_BY_CARD, mappedCustomerDto.getPaymentMethod()),
                 () -> assertEquals(23, mappedCustomerDto.getTaxValue().getValue()),
-                () -> assertEquals(0, mappedCustomerDto.getContactPersons().size())
+                () -> assertEquals(0, mappedCustomerDto.getContactPersonsId().size())
         );
     }
 

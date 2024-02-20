@@ -29,8 +29,5 @@ public class ContactPerson {
     @Column(name = "PHONE", nullable = false)
     private String phoneNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_CUSTOMER")
-    private Customer customer;
 
 }

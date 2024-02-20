@@ -59,8 +59,8 @@ public class Customer {
     @Column(name = "TAX_VALUE")
     private TaxValue taxValue;
 
-    @Column(name = "CONTACT_PERSON", nullable = false)
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "FK_CUSTOMER")
     private List<ContactPerson> contactPersons;
 
 }

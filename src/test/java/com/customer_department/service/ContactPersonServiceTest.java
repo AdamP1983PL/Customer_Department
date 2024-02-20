@@ -37,7 +37,6 @@ class ContactPersonServiceTest {
                 .lastName("test last name")
                 .email("test@test.com")
                 .phoneNumber("111-111-111")
-                .customer(new Customer())
                 .build();
 
         contactPersonDto = ContactPersonDto.builder()
@@ -46,7 +45,6 @@ class ContactPersonServiceTest {
                 .lastName("test last name")
                 .email("test@test.com")
                 .phoneNumber("111-111-111")
-                .customer(new Customer())
                 .build();
     }
 
@@ -95,8 +93,7 @@ class ContactPersonServiceTest {
                 () -> assertEquals("test first name", testingList.get(0).getFirstName()),
                 () -> assertEquals("test last name", testingList.get(0).getLastName()),
                 () -> assertEquals("test@test.com", testingList.get(0).getEmail()),
-                () -> assertEquals("111-111-111", testingList.get(0).getPhoneNumber()),
-                () -> assertNotNull(testingList.get(0).getCustomer())
+                () -> assertEquals("111-111-111", testingList.get(0).getPhoneNumber())
         );
     }
 
@@ -207,7 +204,6 @@ class ContactPersonServiceTest {
                 .lastName("updated last name")
                 .email("updated@updated.com")
                 .phoneNumber("000-000-000")
-                .customer(new Customer())
                 .build();
 
         ContactPersonDto updatedContactPersonDto = ContactPersonDto.builder()
@@ -216,7 +212,6 @@ class ContactPersonServiceTest {
                 .lastName("updated last name")
                 .email("updated@updated.com")
                 .phoneNumber("000-000-000")
-                .customer(new Customer())
                 .build();
 
         given(contactPersonRepository.findById(contactPersonDto.getId())).willReturn(Optional.ofNullable(contactPerson));
@@ -232,8 +227,7 @@ class ContactPersonServiceTest {
                 () -> assertEquals("updated first name", testedContactPersonDto.getFirstName()),
                 () -> assertEquals("updated last name", testedContactPersonDto.getLastName()),
                 () -> assertEquals("updated@updated.com", testedContactPersonDto.getEmail()),
-                () -> assertEquals("000-000-000", testedContactPersonDto.getPhoneNumber()),
-                () -> assertNotNull(testedContactPersonDto.getCustomer())
+                () -> assertEquals("000-000-000", testedContactPersonDto.getPhoneNumber())
         );
     }
 

@@ -15,7 +15,7 @@ public class ContactPersonDto {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private Customer customer;
+    private Long customerId;
 
 }
 

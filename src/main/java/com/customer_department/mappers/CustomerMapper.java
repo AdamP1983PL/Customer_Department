@@ -1,11 +1,20 @@
 package com.customer_department.mappers;
 
 import com.customer_department.dto.CustomerDto;
+import com.customer_department.entity.ContactPerson;
 import com.customer_department.entity.Customer;
+import com.customer_department.exceptions.ResourceNotFoundException;
+import com.customer_department.repository.ContactPersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
 
 @Component
 public class CustomerMapper {
+
+    @Autowired
+    ContactPersonRepository contactPersonRepository;
 
     public Customer mapToCustomer(CustomerDto customerDto) {
         return Customer.builder()
@@ -23,7 +32,9 @@ public class CustomerMapper {
                 .paymentIsBlocked(customerDto.isPaymentIsBlocked())
                 .paymentMethod(customerDto.getPaymentMethod())
                 .taxValue(customerDto.getTaxValue())
-                .contactPersons(customerDto.getContactPersons())
+                .contactPersons(customerDto.getContactPersonsId().stream()
+                        .map(this::mapContactPersonIdToContactPersonObject)
+                        .collect(Collectors.toList()))
                 .build();
     }
 
@@ -43,8 +54,15 @@ public class CustomerMapper {
                 .paymentIsBlocked(customer.isPaymentIsBlocked())
                 .paymentMethod(customer.getPaymentMethod())
                 .taxValue(customer.getTaxValue())
-                .contactPersons(customer.getContactPersons())
+                .contactPersonsId(customer.getContactPersons().stream()
+                        .map(ContactPerson::getId)
+                        .collect(Collectors.toList()))
                 .build();
+    }
+
+    public ContactPerson mapContactPersonIdToContactPersonObject(Long id) {
+        return contactPersonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
     }
 
 }
