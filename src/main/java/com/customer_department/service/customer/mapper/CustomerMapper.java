@@ -1,9 +1,10 @@
-package com.customer_department.mappers;
+package com.customer_department.service.customer.mapper;
 
-import com.customer_department.dto.CustomerDto;
-import com.customer_department.entity.ContactPerson;
-import com.customer_department.entity.Customer;
-import com.customer_department.service.ContactPersonService;
+import com.customer_department.service.contact_person.mapper.ContactPersonMapper;
+import com.customer_department.service.customer.dto.CustomerDto;
+import com.customer_department.model.contact_person.domain.ContactPerson;
+import com.customer_department.model.customer.domain.Customer;
+import com.customer_department.service.contact_person.ContactPersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 public class CustomerMapper {
 
     @Autowired
-    ContactPersonService contactPersonService;
+    ContactPersonServiceImpl contactPersonServiceImpl;
 
     @Autowired
     ContactPersonMapper contactPersonMapper;
@@ -64,7 +65,7 @@ public class CustomerMapper {
     }
 
     public ContactPerson mapContactPersonIdToContactPersonObject(Long id) {
-        return contactPersonMapper.mapToContactPerson(contactPersonService.findContactPersonById(id));
+        return contactPersonMapper.mapToContactPerson(contactPersonServiceImpl.findContactPersonById(id));
     }
 
 }

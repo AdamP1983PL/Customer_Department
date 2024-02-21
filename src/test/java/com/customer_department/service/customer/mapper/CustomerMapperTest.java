@@ -1,9 +1,10 @@
-package com.customer_department.mappers;
+package com.customer_department.service.customer.mapper;
 
-import com.customer_department.dto.CustomerDto;
-import com.customer_department.entity.Customer;
-import com.customer_department.enums.PaymentMethod;
-import com.customer_department.enums.TaxValue;
+import com.customer_department.service.customer.dto.CustomerDto;
+import com.customer_department.model.customer.domain.Customer;
+import com.customer_department.model.enums.PaymentMethod;
+import com.customer_department.model.enums.TaxValue;
+import com.customer_department.service.customer.mapper.CustomerMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

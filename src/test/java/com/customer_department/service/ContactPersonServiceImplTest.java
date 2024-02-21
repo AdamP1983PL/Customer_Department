@@ -1,11 +1,11 @@
 package com.customer_department.service;
 
-import com.customer_department.dto.ContactPersonDto;
-import com.customer_department.entity.ContactPerson;
-import com.customer_department.entity.Customer;
+import com.customer_department.service.contact_person.dto.ContactPersonDto;
+import com.customer_department.model.contact_person.domain.ContactPerson;
 import com.customer_department.exceptions.ResourceNotFoundException;
-import com.customer_department.mappers.ContactPersonMapper;
-import com.customer_department.repository.ContactPersonRepository;
+import com.customer_department.service.contact_person.mapper.ContactPersonMapper;
+import com.customer_department.model.contact_person.repository.ContactPersonRepository;
+import com.customer_department.service.contact_person.ContactPersonServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +24,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ContactPersonServiceTest {
+class ContactPersonServiceImplTest {
 
     private ContactPerson contactPerson;
     private ContactPersonDto contactPersonDto;
@@ -60,7 +60,7 @@ class ContactPersonServiceTest {
     private ContactPersonMapper contactPersonMapper;
 
     @InjectMocks
-    private ContactPersonService contactPersonService;
+    private ContactPersonServiceImpl contactPersonServiceImpl;
 
     @Test
     @DisplayName("Testing findAllContactPerson() method - negative scenario (empty List)")
@@ -69,7 +69,7 @@ class ContactPersonServiceTest {
         given(contactPersonRepository.findAll()).willReturn(Collections.emptyList());
 
         // when
-        List<ContactPersonDto> contactPersonsList = contactPersonService.findAllContactPerson();
+        List<ContactPersonDto> contactPersonsList = contactPersonServiceImpl.findAllContactPerson();
 
         // then
         assertTrue(contactPersonsList.isEmpty());
@@ -83,7 +83,7 @@ class ContactPersonServiceTest {
         given(contactPersonMapper.mapToContactPersonDto(contactPerson)).willReturn(contactPersonDto);
 
         // when
-        List<ContactPersonDto> testingList = contactPersonService.findAllContactPerson();
+        List<ContactPersonDto> testingList = contactPersonServiceImpl.findAllContactPerson();
 
         // then
         assertAll(
@@ -106,7 +106,7 @@ class ContactPersonServiceTest {
         given(contactPersonMapper.mapToContactPersonDto(contactPerson)).willReturn(contactPersonDto);
 
         // when
-        ContactPersonDto testedContactPersonDto = contactPersonService.findContactPersonById(id);
+        ContactPersonDto testedContactPersonDto = contactPersonServiceImpl.findContactPersonById(id);
 
         // then
         assertAll(
@@ -128,7 +128,7 @@ class ContactPersonServiceTest {
 
         // when, then
         assertThrows(ResourceNotFoundException.class, () -> {
-            contactPersonService.findContactPersonById(id);
+            contactPersonServiceImpl.findContactPersonById(id);
         });
         verify(contactPersonRepository, times(1)).findById(id);
         verify(contactPersonMapper, never()).mapToContactPersonDto(contactPerson);
@@ -143,7 +143,7 @@ class ContactPersonServiceTest {
         given(contactPersonMapper.mapToContactPersonDto(contactPerson)).willReturn(contactPersonDto);
 
         // when
-        ContactPersonDto testedContactPersonDto = contactPersonService.findContactPersonByEmail(email);
+        ContactPersonDto testedContactPersonDto = contactPersonServiceImpl.findContactPersonByEmail(email);
 
         // then
         assertAll(
@@ -165,7 +165,7 @@ class ContactPersonServiceTest {
 
         // when, then
         assertThrows(ResourceNotFoundException.class, () -> {
-            contactPersonService.findContactPersonByEmail(email);
+            contactPersonServiceImpl.findContactPersonByEmail(email);
         });
         verify(contactPersonRepository, times(1)).findContactPersonByEmail(email);
         verify(contactPersonMapper, never()).mapToContactPersonDto(contactPerson);
@@ -181,7 +181,7 @@ class ContactPersonServiceTest {
         given(contactPersonMapper.mapToContactPersonDto(any())).willReturn(contactPersonDto);
 
         // when
-        ContactPersonDto testedContactPersonDto = contactPersonService.createContactPerson(contactPersonDto);
+        ContactPersonDto testedContactPersonDto = contactPersonServiceImpl.createContactPerson(contactPersonDto);
 
         // then
         assertAll(
@@ -219,7 +219,7 @@ class ContactPersonServiceTest {
         given(contactPersonMapper.mapToContactPersonDto(updatedContactPerson)).willReturn(updatedContactPersonDto);
 
         // when
-        ContactPersonDto testedContactPersonDto = contactPersonService.updateContactPerson(contactPersonDto, 1L);
+        ContactPersonDto testedContactPersonDto = contactPersonServiceImpl.updateContactPerson(contactPersonDto, 1L);
 
         // then
         assertAll(
@@ -239,7 +239,7 @@ class ContactPersonServiceTest {
         given(contactPersonRepository.findById(id)).willReturn(Optional.ofNullable(contactPerson));
 
         // when
-        contactPersonService.deleteContactPersonById(id);
+        contactPersonServiceImpl.deleteContactPersonById(id);
 
         // then
         verify(contactPersonRepository, times(1)).findById(id);

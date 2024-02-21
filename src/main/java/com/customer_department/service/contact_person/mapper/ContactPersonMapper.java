@@ -1,7 +1,7 @@
-package com.customer_department.mappers;
+package com.customer_department.service.contact_person.mapper;
 
-import com.customer_department.dto.ContactPersonDto;
-import com.customer_department.entity.ContactPerson;
+import com.customer_department.service.contact_person.dto.ContactPersonDto;
+import com.customer_department.model.contact_person.domain.ContactPerson;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
-package com.customer_department.repository;
+package com.customer_department.model.contact_person.repository;
 
-import com.customer_department.entity.ContactPerson;
+import com.customer_department.model.contact_person.domain.ContactPerson;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

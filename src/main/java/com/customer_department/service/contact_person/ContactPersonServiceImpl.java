@@ -1,11 +1,11 @@
-package com.customer_department.service;
+package com.customer_department.service.contact_person;
 
-import com.customer_department.dto.ContactPersonDto;
-import com.customer_department.entity.ContactPerson;
+import com.customer_department.service.contact_person.dto.ContactPersonDto;
+import com.customer_department.model.contact_person.domain.ContactPerson;
 import com.customer_department.exceptions.EmailAlreadyExistsException;
 import com.customer_department.exceptions.ResourceNotFoundException;
-import com.customer_department.mappers.ContactPersonMapper;
-import com.customer_department.repository.ContactPersonRepository;
+import com.customer_department.service.contact_person.mapper.ContactPersonMapper;
+import com.customer_department.model.contact_person.repository.ContactPersonRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class ContactPersonService {
+public class ContactPersonServiceImpl implements ContactPersonService {
 
     private ContactPersonRepository contactPersonRepository;
     private ContactPersonMapper contactPersonMapper;

@@ -1,4 +1,4 @@
-package com.customer_department.enums;
+package com.customer_department.model.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

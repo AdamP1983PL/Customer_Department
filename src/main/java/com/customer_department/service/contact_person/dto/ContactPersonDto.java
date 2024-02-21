@@ -1,6 +1,5 @@
-package com.customer_department.dto;
+package com.customer_department.service.contact_person.dto;
 
-import com.customer_department.entity.Customer;
 import lombok.*;
 
 @Getter

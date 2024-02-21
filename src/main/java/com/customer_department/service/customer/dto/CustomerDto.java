@@ -1,8 +1,7 @@
-package com.customer_department.dto;
+package com.customer_department.service.customer.dto;
 
-import com.customer_department.entity.ContactPerson;
-import com.customer_department.enums.PaymentMethod;
-import com.customer_department.enums.TaxValue;
+import com.customer_department.model.enums.PaymentMethod;
+import com.customer_department.model.enums.TaxValue;
 import lombok.*;
 
 import java.util.List;

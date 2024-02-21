@@ -1,7 +1,8 @@
-package com.customer_department.entity;
+package com.customer_department.model.customer.domain;
 
-import com.customer_department.enums.PaymentMethod;
-import com.customer_department.enums.TaxValue;
+import com.customer_department.model.enums.PaymentMethod;
+import com.customer_department.model.enums.TaxValue;
+import com.customer_department.model.contact_person.domain.ContactPerson;
 import lombok.*;
 
 import javax.persistence.*;

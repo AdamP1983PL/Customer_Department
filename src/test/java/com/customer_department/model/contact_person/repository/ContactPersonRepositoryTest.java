@@ -1,4 +1,4 @@
-package com.customer_department.repository;
+package com.customer_department.model.contact_person.repository;
 
 class ContactPersonRepositoryTest {
 

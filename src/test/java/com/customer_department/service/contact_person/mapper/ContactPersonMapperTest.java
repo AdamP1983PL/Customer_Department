@@ -1,14 +1,13 @@
-package com.customer_department.mappers;
+package com.customer_department.service.contact_person.mapper;
 
-import com.customer_department.dto.ContactPersonDto;
-import com.customer_department.entity.ContactPerson;
-import com.customer_department.entity.Customer;
+import com.customer_department.service.contact_person.dto.ContactPersonDto;
+import com.customer_department.model.contact_person.domain.ContactPerson;
+import com.customer_department.model.customer.domain.Customer;
+import com.customer_department.service.contact_person.mapper.ContactPersonMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package com.customer_department.entity;
+package com.customer_department.model.contact_person.domain;
 
 import lombok.*;
 
