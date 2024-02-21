@@ -3,8 +3,7 @@ package com.customer_department.mappers;
 import com.customer_department.dto.CustomerDto;
 import com.customer_department.entity.ContactPerson;
 import com.customer_department.entity.Customer;
-import com.customer_department.exceptions.ResourceNotFoundException;
-import com.customer_department.repository.ContactPersonRepository;
+import com.customer_department.service.ContactPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,11 @@ import java.util.stream.Collectors;
 public class CustomerMapper {
 
     @Autowired
-    ContactPersonRepository contactPersonRepository;
+    ContactPersonService contactPersonService;
+
+    @Autowired
+    ContactPersonMapper contactPersonMapper;
+
 
     public Customer mapToCustomer(CustomerDto customerDto) {
         return Customer.builder()
@@ -61,8 +64,7 @@ public class CustomerMapper {
     }
 
     public ContactPerson mapContactPersonIdToContactPersonObject(Long id) {
-        return contactPersonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
+        return contactPersonMapper.mapToContactPerson(contactPersonService.findContactPersonById(id));
     }
 
 }

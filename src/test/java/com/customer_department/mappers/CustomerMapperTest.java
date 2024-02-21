@@ -7,6 +7,7 @@ import com.customer_department.enums.TaxValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -18,7 +19,9 @@ class CustomerMapperTest {
 
     private Customer customer;
     private CustomerDto customerDto;
-    private CustomerMapper customerMapper = new CustomerMapper();
+
+    @Autowired
+    private CustomerMapper customerMapper;
 
     @BeforeEach()
     void initialize() {
