@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
 
-        log.info("====>>>> findCustomerById(" + id + ") execution.");
+        log.info("====>>>> findCustomerById(\"" + id + "\") execution.");
         return customerMapper.mapToCustomerDto(customer);
     }
 
