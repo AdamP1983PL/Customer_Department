@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface ContactPersonService {
 
-    public List<ContactPersonDto> findAllContactPerson();
+    List<ContactPersonDto> findAllContactPerson();
 
-    public ContactPersonDto findContactPersonById(Long id);
+    ContactPersonDto findContactPersonById(Long id);
 
-    public ContactPersonDto findContactPersonByEmail(String email);
+    ContactPersonDto findContactPersonByEmail(String email);
 
-    public ContactPersonDto createContactPerson(ContactPersonDto contactPersonDto);
+    ContactPersonDto createContactPerson(ContactPersonDto contactPersonDto);
 
-    public ContactPersonDto updateContactPerson(ContactPersonDto contactPersonDto, Long id);
+    ContactPersonDto updateContactPerson(ContactPersonDto contactPersonDto, Long id);
 
-    public void deleteContactPersonById(Long id);
+    void deleteContactPersonById(Long id);
 }

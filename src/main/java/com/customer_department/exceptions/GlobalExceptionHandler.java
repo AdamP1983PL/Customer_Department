@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<ErrorDetails> handleEmailAlreadyExistsException(EmailAlreadyExistsException exception,
-                                                                        WebRequest webRequest) {
+                                                                          WebRequest webRequest) {
         ErrorDetails errorDetails = ErrorDetails.builder()
                 .timestamp(LocalDateTime.now())
                 .message(exception.getMessage())
@@ -37,6 +37,18 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(TaxNumberAlreadyExistsException.class)
+    public ResponseEntity<ErrorDetails> handleTaxNumberAlreadyExistsException(TaxNumberAlreadyExistsException exception,
+                                                                              WebRequest webRequest) {
+        ErrorDetails errorDetails = ErrorDetails.builder()
+                .timestamp(LocalDateTime.now())
+                .message(exception.getMessage())
+                .path(webRequest.getDescription(false))
+                .errorCode("TAX_NUMBER_ALREADY_EXISTS_EXCEPTION")
+                .build();
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
 
 
 }
