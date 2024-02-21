@@ -10,7 +10,7 @@ public interface CustomerService {
 
     CustomerDto findCustomerById(Long id);
 
-    CustomerDto findCustomerByName(String name);
+    List<CustomerDto> findCustomersByName(String name);
 
     CustomerDto createCustomer(CustomerDto customerDto);
 

@@ -40,12 +40,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDto findCustomerByName(String name) {
-        Customer customer = customerRepository.findCustomerByCustomerName(name)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer name", name));
+    public List<CustomerDto> findCustomersByName(String name) {
+        List<Customer> customers = customerRepository.findCustomerByCustomerNameContaining(name);
 
-        log.info("====>>>> findCustomerByName(" + name + ") execution.");
-        return customerMapper.mapToCustomerDto(customer);
+        log.info("====>>>> findCustomersByName(\"" + name + "\") execution.");
+        return customers.stream()
+                .map(customerMapper::mapToCustomerDto)
+                .collect(Collectors.toList());
     }
 
     @Override
