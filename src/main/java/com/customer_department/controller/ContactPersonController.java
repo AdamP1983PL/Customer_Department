@@ -43,7 +43,7 @@ public class ContactPersonController {
     public ResponseEntity<ContactPersonDto> createContactPerson(@RequestBody ContactPersonDto contactPersonDto) {
         ContactPersonDto createdContactPerson = contactPersonServiceImpl.createContactPerson(contactPersonDto);
         log.info("====>>>> ContactPersonController -> createContactPerson() execution.");
-        return new ResponseEntity<>(createdContactPerson, HttpStatus.OK);
+        return new ResponseEntity<>(createdContactPerson, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
