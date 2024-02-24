@@ -23,11 +23,10 @@ public class ContactPerson {
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-    @Column(name = "EMAIL", nullable = false, unique = true)
+    @Column(name = "EMAIL", nullable = false)
     private String email;
 
     @Column(name = "PHONE", nullable = false)
     private String phoneNumber;
-
 
 }

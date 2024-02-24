@@ -24,7 +24,7 @@ public class Customer {
     @Column(name = "CUSTOMER_NAME", nullable = false)
     private String customerName;
 
-    @Column(name = "TAX_NUMBER", nullable = false, unique = true)
+    @Column(name = "TAX_NUMBER", nullable = false)
     private String taxNumber;
 
     @Column(name = "COUNTRY", nullable = false)
@@ -39,10 +39,10 @@ public class Customer {
     @Column(name = "STREET", nullable = false)
     private String street;
 
-    @Column(name = "CUSTOMER_EMAIL", nullable = false, unique = true)
+    @Column(name = "CUSTOMER_EMAIL", nullable = false)
     private String customerEmail;
 
-    @Column(name = "CUSTOMER_PHONE_NO", nullable = false, unique = true)
+    @Column(name = "CUSTOMER_PHONE_NO", nullable = false)
     private String customerPhoneNumber;
 
     @Column(name = "CUSTOMER_WEBSITE")
@@ -60,7 +60,7 @@ public class Customer {
     @Column(name = "TAX_VALUE")
     private TaxValue taxValue;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "FK_CUSTOMER")
     private List<ContactPerson> contactPersons;
 

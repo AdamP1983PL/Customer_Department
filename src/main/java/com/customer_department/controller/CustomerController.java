@@ -48,7 +48,7 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerDto customerDto,
-                                                      Long id) {
+                                                      @PathVariable Long id) {
         CustomerDto updatedCustomerDto = customerServiceImpl.updateCustomer(customerDto, id);
         log.info("====>>>> CustomerController -> updateCustomer() execution");
         return new ResponseEntity<>(updatedCustomerDto, HttpStatus.OK);
@@ -57,7 +57,7 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable("id") Long id) {
         customerServiceImpl.deleteCustomerById(id);
-        log.info("====>>>> CustomerController -> deleteCustomer(\"" + id + "\") execution");
+        log.info("====>>>> CustomerController -> deleteCustomer(\"id: " + id + "\") execution");
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

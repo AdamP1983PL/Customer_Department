@@ -1,4 +1,4 @@
-package com.customer_department.service;
+package com.customer_department.service.contact_person;
 
 import com.customer_department.service.contact_person.dto.ContactPersonDto;
 import com.customer_department.model.contact_person.domain.ContactPerson;

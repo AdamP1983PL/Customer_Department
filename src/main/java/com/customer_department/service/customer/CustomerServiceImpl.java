@@ -2,6 +2,8 @@ package com.customer_department.service.customer;
 
 import com.customer_department.exceptions.ResourceNotFoundException;
 import com.customer_department.exceptions.TaxNumberAlreadyExistsException;
+import com.customer_department.model.contact_person.domain.ContactPerson;
+import com.customer_department.model.contact_person.repository.ContactPersonRepository;
 import com.customer_department.model.customer.domain.Customer;
 import com.customer_department.model.customer.repository.CustomerRepository;
 import com.customer_department.service.customer.dto.CustomerDto;
@@ -9,7 +11,9 @@ import com.customer_department.service.customer.mapper.CustomerMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,7 +24,9 @@ import java.util.stream.Collectors;
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerRepository customerRepository;
+    private ContactPersonRepository contactPersonRepository;
     private CustomerMapper customerMapper;
+    private EntityManager entityManager;
 
     @Override
     public List<CustomerDto> findAllCustomers() {
@@ -50,15 +56,35 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional
     public CustomerDto createCustomer(CustomerDto customerDto) {
-        Optional<Customer> customer = customerRepository
-                .findCustomerByTaxNumber(customerDto.getTaxNumber());
+        Optional<Customer> customer = customerRepository.findCustomerByTaxNumber(customerDto.getTaxNumber());
 
         if (customer.isPresent()) {
             throw new TaxNumberAlreadyExistsException("Tax number", customerDto.getTaxNumber());
         }
 
-        Customer savedCustomer = customerRepository.save(customerMapper.mapToCustomer(customerDto));
+//        /*2024-02-24 20:08:46.516 ERROR 7344 --- [nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]
+//        : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+//        [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException:
+//        detached entity passed to persist: com.customer_department.model.contact_person.domain.ContactPerson;
+//        nested exception is org.hibernate.PersistentObjectException: detached entity passed to persist:
+//        com.customer_department.model.contact_person.domain.ContactPerson]*/
+
+        List<ContactPerson> managedContactPersons = customerDto.getContactPersonsId().stream()
+                .map(id -> contactPersonRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Contact Person", "id", id)))
+                .collect(Collectors.toList());
+
+        customerDto.setContactPersonsId(managedContactPersons.stream()
+                .map(ContactPerson::getId)
+                .collect(Collectors.toList()));
+
+        Customer customerToBeSaved = customerMapper.mapToCustomer(customerDto);
+
+        customerToBeSaved.setContactPersons(managedContactPersons);
+        Customer savedCustomer = customerRepository.save(customerToBeSaved);
+
         log.info("====>>>> createCustomer(" + customerDto.getCustomerName() + ") execution.");
         return customerMapper.mapToCustomerDto(savedCustomer);
     }
