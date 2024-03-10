@@ -78,8 +78,8 @@ public class ContactPersonServiceImpl implements ContactPersonService {
         contactPersonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Contact Person", "id", id));
 
-        contactPersonRepository.deleteById(id);
         log.info("====>>>> Contact Person with id: " + id + " deleted successfully.");
+        contactPersonRepository.deleteById(id);
     }
 
 }

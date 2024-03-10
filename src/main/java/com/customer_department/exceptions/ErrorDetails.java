@@ -17,6 +17,3 @@ public class ErrorDetails {
     private String errorCode;
 
 }
-
-
-// todo add GlobalExceptionHandler

@@ -17,7 +17,7 @@ public class EmailAlreadyExistsException extends RuntimeException {
     }
 
     public EmailAlreadyExistsException(String fieldName, String fieldValue) {
-        super(String.format("%s already exists for: %s, email must be unique.", fieldName, fieldValue));
+        super(String.format("%s already exists for %s, email must be unique.", fieldName, fieldValue));
         log.info("====>>>> EmailAlreadyExistsException() execution.");
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;

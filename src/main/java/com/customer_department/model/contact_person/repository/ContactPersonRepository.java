@@ -10,3 +10,5 @@ public interface ContactPersonRepository extends JpaRepository<ContactPerson, Lo
     Optional<ContactPerson> findContactPersonByEmail(String email);
 
 }
+
+// todo use JPQL

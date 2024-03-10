@@ -27,7 +27,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceImplTest {
-
     private Customer customer;
     private CustomerDto customerDto;
 
@@ -66,7 +65,6 @@ class CustomerServiceImplTest {
                 .paymentMethod(PaymentMethod.CASH)
                 .taxValue(TaxValue.TWENTY_THREE)
                 .build();
-
     }
 
     @AfterEach()
@@ -84,7 +82,7 @@ class CustomerServiceImplTest {
     private CustomerServiceImpl customerServiceImpl;
 
     @Test
-    @DisplayName("Testing findAllCustomers() method - negative scenario (empty List)")
+    @DisplayName("Testing findAllCustomers() method - negative scenario (empty List).")
     public void givenEmptyCustomersList_whenFindAllCustomers_thenReturnEmptyList() {
         // given
         given(customerRepository.findAll()).willReturn(Collections.emptyList());
@@ -97,7 +95,7 @@ class CustomerServiceImplTest {
     }
 
     @Test
-    @DisplayName("Testing findAllCustomers() method - positive scenario (valid input)")
+    @DisplayName("Testing findAllCustomers() method - positive scenario (valid input).")
     public void givenCustomersList_whenFindAllCustomers_thenReturnCustomerList() {
         // given
         given(customerRepository.findAll()).willReturn(List.of(customer));
@@ -115,11 +113,10 @@ class CustomerServiceImplTest {
                 () -> assertFalse(customersList.get(0).isPaymentIsBlocked()),
                 () -> assertEquals(TaxValue.TWENTY_THREE, customersList.get(0).getTaxValue())
         );
-
     }
 
     @Test
-    @DisplayName("Testing findCustomerById() method - positive scenario (valid input)")
+    @DisplayName("Testing findCustomerById() method - positive scenario (valid input).")
     public void givenCustomerId_whenFindCustomerById_thenReturnCustomerObject() {
         // given
         Long id = customer.getId();
@@ -182,7 +179,7 @@ class CustomerServiceImplTest {
         given(customerRepository.findCustomerByTaxNumber(customer.getTaxNumber()))
                 .willReturn(Optional.empty());
         given(customerMapper.mapToCustomer(customerDto)).willReturn(customer);
-        given(customerMapper.mapToCustomerDto(any(Customer.class))).willReturn(customerDto);
+        given(customerMapper.mapToCustomerDto(customer)).willReturn(customerDto);
         given(customerRepository.save(customer)).willReturn(customer);
 
         // when
@@ -270,7 +267,7 @@ class CustomerServiceImplTest {
     }
 
     @Test
-    @DisplayName("Testing deleteCustomerById() method - positive scenario (valid input)")
+    @DisplayName("Testing deleteCustomerById() method - positive scenario (valid input).")
     public void givenCustomerId_whenDeleteCustomerById_thenCustomerObjectDeleted() {
         // given
         Long id = 1L;

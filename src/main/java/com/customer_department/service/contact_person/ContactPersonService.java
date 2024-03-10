@@ -18,3 +18,5 @@ public interface ContactPersonService {
 
     void deleteContactPersonById(Long id);
 }
+
+// todo pagination and  sorting

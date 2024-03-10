@@ -89,6 +89,8 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.mapToCustomerDto(savedCustomer);
     }
 
+// todo Postman tests: savedCustomer "isActive" is always false!!!
+
     @Override
     public CustomerDto updateCustomer(CustomerDto customerDto, Long id) {
         Customer customer = customerRepository.findById(id)
