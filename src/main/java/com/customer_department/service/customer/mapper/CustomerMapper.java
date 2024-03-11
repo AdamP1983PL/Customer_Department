@@ -1,24 +1,11 @@
 package com.customer_department.service.customer.mapper;
 
-import com.customer_department.service.contact_person.mapper.ContactPersonMapper;
-import com.customer_department.service.customer.dto.CustomerDto;
-import com.customer_department.model.contact_person.domain.ContactPerson;
 import com.customer_department.model.customer.domain.Customer;
-import com.customer_department.service.contact_person.ContactPersonServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.customer_department.service.customer.dto.CustomerDto;
 import org.springframework.stereotype.Component;
-
-import java.util.stream.Collectors;
 
 @Component
 public class CustomerMapper {
-
-    @Autowired
-    ContactPersonServiceImpl contactPersonServiceImpl;
-
-    @Autowired
-    ContactPersonMapper contactPersonMapper;
-
 
     public Customer mapToCustomer(CustomerDto customerDto) {
         return Customer.builder()
@@ -36,9 +23,9 @@ public class CustomerMapper {
                 .paymentIsBlocked(customerDto.isPaymentIsBlocked())
                 .paymentMethod(customerDto.getPaymentMethod())
                 .taxValue(customerDto.getTaxValue())
-                .contactPersons(customerDto.getContactPersonsId().stream()
-                        .map(this::mapContactPersonIdToContactPersonObject)
-                        .collect(Collectors.toList()))
+                .contactPersonName(customerDto.getContactPersonName())
+                .contactPersonEmail(customerDto.getContactPersonEmail())
+                .contactPersonPhone(customerDto.getContactPersonPhone())
                 .build();
     }
 
@@ -58,14 +45,10 @@ public class CustomerMapper {
                 .paymentIsBlocked(customer.isPaymentIsBlocked())
                 .paymentMethod(customer.getPaymentMethod())
                 .taxValue(customer.getTaxValue())
-                .contactPersonsId(customer.getContactPersons().stream()
-                        .map(ContactPerson::getId)
-                        .collect(Collectors.toList()))
+                .contactPersonName(customer.getContactPersonName())
+                .contactPersonEmail(customer.getContactPersonEmail())
+                .contactPersonPhone(customer.getContactPersonPhone())
                 .build();
-    }
-
-    public ContactPerson mapContactPersonIdToContactPersonObject(Long id) {
-        return contactPersonMapper.mapToContactPerson(contactPersonServiceImpl.findContactPersonById(id));
     }
 
 }

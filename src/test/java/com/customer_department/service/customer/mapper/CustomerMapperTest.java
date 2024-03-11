@@ -41,7 +41,9 @@ class CustomerMapperTest {
                 .paymentIsBlocked(false)
                 .paymentMethod(PaymentMethod.PAYMENT_BY_CARD)
                 .taxValue(TaxValue.TWENTY_THREE)
-                .contactPersons(List.of())
+                .contactPersonName("test name")
+                .contactPersonEmail("test email")
+                .contactPersonPhone("000000000")
                 .build();
 
         customerDto = CustomerDto.builder()
@@ -59,7 +61,9 @@ class CustomerMapperTest {
                 .paymentIsBlocked(false)
                 .paymentMethod(PaymentMethod.PAYMENT_BY_CARD)
                 .taxValue(TaxValue.TWENTY_THREE)
-                .contactPersonsId(List.of())
+                .contactPersonName("test name")
+                .contactPersonEmail("test email")
+                .contactPersonPhone("000000000")
                 .build();
     }
 
@@ -67,7 +71,6 @@ class CustomerMapperTest {
     @DisplayName("Testing mapToCustomer() method.")
     public void givenCustomerDtoObject_whenMapToCustomer_thenReturnCustomerObject() {
         // given
-
         // when
         Customer mappedCustomer = customerMapper.mapToCustomer(customerDto);
 
@@ -88,7 +91,9 @@ class CustomerMapperTest {
                 () -> assertFalse(mappedCustomer.isPaymentIsBlocked()),
                 () -> assertEquals(PaymentMethod.PAYMENT_BY_CARD, mappedCustomer.getPaymentMethod()),
                 () -> assertEquals(23, mappedCustomer.getTaxValue().getValue()),
-                () -> assertEquals(0, mappedCustomer.getContactPersons().size())
+                () -> assertEquals("test name", mappedCustomer.getContactPersonName()),
+                () -> assertEquals("test email", mappedCustomer.getContactPersonEmail()),
+                () -> assertEquals("000000000", mappedCustomer.getContactPersonPhone())
         );
     }
 
@@ -96,7 +101,6 @@ class CustomerMapperTest {
     @DisplayName("Testing mapToCustomerDto() method.")
     public void givenCustomerObject_whenMapToCustomerDto_thenReturnCustomerDtoObject() {
         // given
-
         // when
         CustomerDto mappedCustomerDto = customerMapper.mapToCustomerDto(customer);
 
@@ -117,7 +121,9 @@ class CustomerMapperTest {
                 () -> assertFalse(mappedCustomerDto.isPaymentIsBlocked()),
                 () -> assertEquals(PaymentMethod.PAYMENT_BY_CARD, mappedCustomerDto.getPaymentMethod()),
                 () -> assertEquals(23, mappedCustomerDto.getTaxValue().getValue()),
-                () -> assertEquals(0, mappedCustomerDto.getContactPersonsId().size())
+                () -> assertEquals("test name", mappedCustomerDto.getContactPersonName()),
+                () -> assertEquals("test email", mappedCustomerDto.getContactPersonEmail()),
+                () -> assertEquals("000000000", mappedCustomerDto.getContactPersonPhone())
         );
     }
 

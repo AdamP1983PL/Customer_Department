@@ -4,8 +4,6 @@ import com.customer_department.model.enums.PaymentMethod;
 import com.customer_department.model.enums.TaxValue;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,8 +25,10 @@ public class CustomerDto {
     private boolean paymentIsBlocked;
     private PaymentMethod paymentMethod;
     private TaxValue taxValue;
-    private List<Long> contactPersonsId;
-
+    //    private List<Long> contactPersonsId;
+    private String contactPersonName;
+    private String contactPersonEmail;
+    private String contactPersonPhone;
 }
 
 

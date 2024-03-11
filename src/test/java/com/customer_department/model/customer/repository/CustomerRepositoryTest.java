@@ -39,7 +39,9 @@ class CustomerRepositoryTest {
                 .paymentIsBlocked(false)
                 .paymentMethod(PaymentMethod.CASH)
                 .taxValue(TaxValue.TWENTY_THREE)
-                .contactPersons(Collections.emptyList())
+                .contactPersonName("test name")
+                .contactPersonEmail("test email")
+                .contactPersonPhone("000000000")
                 .build();
     }
 
