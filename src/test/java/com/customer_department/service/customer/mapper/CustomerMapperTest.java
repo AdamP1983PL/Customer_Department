@@ -39,7 +39,7 @@ class CustomerMapperTest {
                 .customerWebsite("www.test.com")
                 .isActive(true)
                 .paymentIsBlocked(false)
-                .paymentMethod(PaymentMethod.PAYMENT_BY_CARD)
+                .paymentMethod(PaymentMethod.BY_CARD)
                 .taxValue(TaxValue.TWENTY_THREE)
                 .contactPersonName("test name")
                 .contactPersonEmail("test email")
@@ -59,7 +59,7 @@ class CustomerMapperTest {
                 .customerWebsite("www.test.com")
                 .isActive(true)
                 .paymentIsBlocked(false)
-                .paymentMethod(PaymentMethod.PAYMENT_BY_CARD)
+                .paymentMethod(PaymentMethod.BY_CARD)
                 .taxValue(TaxValue.TWENTY_THREE)
                 .contactPersonName("test name")
                 .contactPersonEmail("test email")
@@ -89,7 +89,7 @@ class CustomerMapperTest {
                 () -> assertEquals("www.test.com", mappedCustomer.getCustomerWebsite()),
                 () -> assertTrue(mappedCustomer.isActive()),
                 () -> assertFalse(mappedCustomer.isPaymentIsBlocked()),
-                () -> assertEquals(PaymentMethod.PAYMENT_BY_CARD, mappedCustomer.getPaymentMethod()),
+                () -> assertEquals(PaymentMethod.BY_CARD, mappedCustomer.getPaymentMethod()),
                 () -> assertEquals(23, mappedCustomer.getTaxValue().getValue()),
                 () -> assertEquals("test name", mappedCustomer.getContactPersonName()),
                 () -> assertEquals("test email", mappedCustomer.getContactPersonEmail()),
@@ -119,7 +119,7 @@ class CustomerMapperTest {
                 () -> assertEquals("www.test.com", mappedCustomerDto.getCustomerWebsite()),
                 () -> assertTrue(mappedCustomerDto.isActive()),
                 () -> assertFalse(mappedCustomerDto.isPaymentIsBlocked()),
-                () -> assertEquals(PaymentMethod.PAYMENT_BY_CARD, mappedCustomerDto.getPaymentMethod()),
+                () -> assertEquals(PaymentMethod.BY_CARD, mappedCustomerDto.getPaymentMethod()),
                 () -> assertEquals(23, mappedCustomerDto.getTaxValue().getValue()),
                 () -> assertEquals("test name", mappedCustomerDto.getContactPersonName()),
                 () -> assertEquals("test email", mappedCustomerDto.getContactPersonEmail()),

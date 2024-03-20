@@ -51,7 +51,7 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    @DisplayName("Testing findCustomerByCustomerNameContaining() method.")
+    @DisplayName("Testing findCustomerByCustomerNameContaining() query.")
     public void givenCustomerName_whenFindCustomerByCustomerName_thenCustomerObject() {
         // given
         customerRepository.save(customer);
@@ -69,7 +69,7 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    @DisplayName("Testing findCustomerByTaxNumber() method.")
+    @DisplayName("Testing findCustomerByTaxNumber() query.")
     public void givenTaxNumber_whenFindCustomerByTaxNumber_thenReturnCustomerObject() {
         // given
         customerRepository.save(customer);
