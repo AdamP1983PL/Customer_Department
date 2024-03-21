@@ -6,12 +6,10 @@ import com.customer_department.model.customer.domain.Customer;
 import com.customer_department.model.customer.repository.CustomerRepository;
 import com.customer_department.service.customer.dto.CustomerDto;
 import com.customer_department.service.customer.mapper.CustomerMapper;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -87,14 +85,38 @@ public class CustomerServiceImpl implements CustomerService {
                     cust.setPaymentIsBlocked(customerDto.isPaymentIsBlocked());
                     cust.setTaxValue(customerDto.getTaxValue());
                     cust.setContactPersonName(customerDto.getContactPersonName());
-                    cust.setContactPersonEmail(cust.getContactPersonEmail());
-                    cust.setContactPersonPhone(cust.getContactPersonPhone());
+                    cust.setContactPersonEmail(customerDto.getContactPersonEmail());
+                    cust.setContactPersonPhone(customerDto.getContactPersonPhone());
                     return customerRepository.save(cust);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
 
         log.info("====>>>> updateCustomer() execution.");
         return customerMapper.mapToCustomerDto(customer);
+    }
+
+    @Override
+    public CustomerDto mvcUpdateCustomer(CustomerDto customerDto) {
+        Customer customer = customerRepository.findById(customerDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", customerDto.getId()));
+        customer.setCustomerName(customerDto.getCustomerName());
+        customer.setTaxNumber(customerDto.getTaxNumber());
+        customer.setCountry(customerDto.getCountry());
+        customer.setCity(customerDto.getCity());
+        customer.setPostalCode(customerDto.getPostalCode());
+        customer.setStreet(customerDto.getStreet());
+        customer.setCustomerEmail(customerDto.getCustomerEmail());
+        customer.setCustomerPhoneNumber(customerDto.getCustomerPhoneNumber());
+        customer.setCustomerWebsite(customerDto.getCustomerWebsite());
+        customer.setActive(customerDto.isActive());
+        customer.setPaymentIsBlocked(customerDto.isPaymentIsBlocked());
+        customer.setTaxValue(customerDto.getTaxValue());
+        customer.setContactPersonName(customerDto.getContactPersonName());
+        customer.setContactPersonEmail(customerDto.getContactPersonEmail());
+        customer.setContactPersonPhone(customerDto.getContactPersonPhone());
+        Customer savedCustomer = customerRepository.save(customer);
+        log.info("====>>>> mvcUpdateCustomer(" + customerDto + ") execution.");
+        return customerMapper.mapToCustomerDto(savedCustomer);
     }
 
     @Override

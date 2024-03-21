@@ -16,6 +16,8 @@ public interface CustomerService {
 
     CustomerDto updateCustomer(CustomerDto customerDto, Long id);
 
+    CustomerDto mvcUpdateCustomer(CustomerDto customerDto);
+
     void deleteCustomerById(Long id);
 
 }
