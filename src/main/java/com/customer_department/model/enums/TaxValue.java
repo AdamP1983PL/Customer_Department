@@ -2,16 +2,16 @@ package com.customer_department.model.enums;
 
 
 public enum TaxValue {
-    ZERO(0),
-    TWENTY_THREE(23);
+    ZERO("0"),
+    TWENTY_THREE("23");
 
-    private final int value;
+    private final String displayText;
 
-    TaxValue(int value) {
-        this.value = value;
+    TaxValue(String displayText) {
+        this.displayText = displayText;
     }
 
-    public int getValue() {
-        return value;
+    public String getDisplayText() {
+        return displayText;
     }
 }
