@@ -72,21 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDto updateCustomer(CustomerDto customerDto, Long id) {
         Customer customer = customerRepository.findById(id)
                 .map(cust -> {
-                    cust.setCustomerName(customerDto.getCustomerName());
-                    cust.setTaxNumber(customerDto.getTaxNumber());
-                    cust.setCountry(customerDto.getCountry());
-                    cust.setCity(customerDto.getCity());
-                    cust.setPostalCode(customerDto.getPostalCode());
-                    cust.setStreet(customerDto.getStreet());
-                    cust.setCustomerEmail(customerDto.getCustomerEmail());
-                    cust.setCustomerPhoneNumber(customerDto.getCustomerPhoneNumber());
-                    cust.setCustomerWebsite(customerDto.getCustomerWebsite());
-                    cust.setActive(customerDto.isActive());
-                    cust.setPaymentIsBlocked(customerDto.isPaymentIsBlocked());
-                    cust.setTaxValue(customerDto.getTaxValue());
-                    cust.setContactPersonName(customerDto.getContactPersonName());
-                    cust.setContactPersonEmail(customerDto.getContactPersonEmail());
-                    cust.setContactPersonPhone(customerDto.getContactPersonPhone());
+                    prepareUpdate(customerDto, cust);
                     return customerRepository.save(cust);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
@@ -99,6 +85,22 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDto mvcUpdateCustomer(CustomerDto customerDto) {
         Customer customer = customerRepository.findById(customerDto.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", customerDto.getId()));
+        prepareUpdate(customerDto, customer);
+        Customer savedCustomer = customerRepository.save(customer);
+        log.info("====>>>> mvcUpdateCustomer(" + customerDto + ") execution.");
+        return customerMapper.mapToCustomerDto(savedCustomer);
+    }
+
+    @Override
+    public void deleteCustomerById(Long id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
+
+        customerRepository.delete(customer);
+        log.info("====>>>> Customer with id " + id + " deleted successfully.");
+    }
+
+    private void prepareUpdate(CustomerDto customerDto, Customer customer) {
         customer.setCustomerName(customerDto.getCustomerName());
         customer.setTaxNumber(customerDto.getTaxNumber());
         customer.setCountry(customerDto.getCountry());
@@ -114,18 +116,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setContactPersonName(customerDto.getContactPersonName());
         customer.setContactPersonEmail(customerDto.getContactPersonEmail());
         customer.setContactPersonPhone(customerDto.getContactPersonPhone());
-        Customer savedCustomer = customerRepository.save(customer);
-        log.info("====>>>> mvcUpdateCustomer(" + customerDto + ") execution.");
-        return customerMapper.mapToCustomerDto(savedCustomer);
-    }
-
-    @Override
-    public void deleteCustomerById(Long id) {
-        Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
-
-        customerRepository.delete(customer);
-        log.info("====>>>> Customer with id " + id + " deleted successfully.");
     }
 
 }

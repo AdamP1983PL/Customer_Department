@@ -1,17 +1,14 @@
 package com.customer_department.service.customer.mapper;
 
-import com.customer_department.service.customer.dto.CustomerDto;
 import com.customer_department.model.customer.domain.Customer;
 import com.customer_department.model.enums.PaymentMethod;
 import com.customer_department.model.enums.TaxValue;
-import com.customer_department.service.customer.mapper.CustomerMapper;
+import com.customer_department.service.customer.dto.CustomerDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -90,7 +87,7 @@ class CustomerMapperTest {
                 () -> assertTrue(mappedCustomer.isActive()),
                 () -> assertFalse(mappedCustomer.isPaymentIsBlocked()),
                 () -> assertEquals(PaymentMethod.BY_CARD, mappedCustomer.getPaymentMethod()),
-                () -> assertEquals(23, mappedCustomer.getTaxValue().getValue()),
+                () -> assertEquals("23", mappedCustomer.getTaxValue().getDisplayText()),
                 () -> assertEquals("test name", mappedCustomer.getContactPersonName()),
                 () -> assertEquals("test email", mappedCustomer.getContactPersonEmail()),
                 () -> assertEquals("000000000", mappedCustomer.getContactPersonPhone())
@@ -120,7 +117,7 @@ class CustomerMapperTest {
                 () -> assertTrue(mappedCustomerDto.isActive()),
                 () -> assertFalse(mappedCustomerDto.isPaymentIsBlocked()),
                 () -> assertEquals(PaymentMethod.BY_CARD, mappedCustomerDto.getPaymentMethod()),
-                () -> assertEquals(23, mappedCustomerDto.getTaxValue().getValue()),
+                () -> assertEquals("23", mappedCustomerDto.getTaxValue().getDisplayText()),
                 () -> assertEquals("test name", mappedCustomerDto.getContactPersonName()),
                 () -> assertEquals("test email", mappedCustomerDto.getContactPersonEmail()),
                 () -> assertEquals("000000000", mappedCustomerDto.getContactPersonPhone())

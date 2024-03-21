@@ -46,7 +46,7 @@
                    class="btn btn-primary bth-sm">Edit</a>
             </td>
             <td>
-                <a href=""
+                <a th:href="@{/customers/{id}(id=${customer.id})}"
                    class="btn btn-danger bth-sm"
                    onclick="if (!(confirm('Delete this Vehicle?'))) return false">Delete</a>
             </td>

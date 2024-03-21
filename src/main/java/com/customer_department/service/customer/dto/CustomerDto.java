@@ -33,7 +33,7 @@ public class CustomerDto {
     @Size(min = 3, max = 30)
     @NotEmpty(message = "Street should not be empty.")
     private String street;
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 50)
     @NotEmpty(message = "Customer email should not be empty.")
     private String customerEmail;
     @Size(min = 3, max = 30)
@@ -48,13 +48,13 @@ public class CustomerDto {
     private PaymentMethod paymentMethod;
 //    @NotEmpty(message = "Select option.")
     private TaxValue taxValue;
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 50)
     @NotEmpty(message = "Contact person full name should not be empty.")
     private String contactPersonName;
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 50)
     @NotEmpty(message = "Customer person email should not be empty.")
     private String contactPersonEmail;
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 50)
     @NotEmpty(message = "Customer person phone number should not be empty.")
     private String contactPersonPhone;
 

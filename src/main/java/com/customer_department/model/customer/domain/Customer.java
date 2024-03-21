@@ -37,8 +37,10 @@ public class Customer {
     @Column(name = "BLOCKED_PAYMENT")
     private boolean paymentIsBlocked;
     @Column(name = "PAYMENT_METHOD")
+    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
     @Column(name = "TAX_VALUE")
+    @Enumerated(EnumType.STRING)
     private TaxValue taxValue;
     @Column(name = "CONTACT_PERSON_NAME", nullable = false)
     private String contactPersonName;
